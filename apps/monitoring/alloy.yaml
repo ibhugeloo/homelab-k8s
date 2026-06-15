@@ -87,8 +87,8 @@ data:
       scheme            = "https"
       bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
       tls_config {
-        ca_file              = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-        insecure_skip_verify = true
+        ca_file     = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+        server_name = "kubernetes.default.svc"
       }
     }
 
@@ -100,8 +100,8 @@ data:
       scheme            = "https"
       bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
       tls_config {
-        ca_file              = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-        insecure_skip_verify = true
+        ca_file     = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+        server_name = "kubernetes.default.svc"
       }
     }
 
@@ -137,7 +137,7 @@ spec:
       labels:
         app: alloy
       annotations:
-        config-hash: "v1"
+        config-hash: "v2"
     spec:
       serviceAccountName: alloy
       containers:
@@ -153,10 +153,10 @@ spec:
               name: http
           resources:
             requests:
-              memory: 64Mi
+              memory: 128Mi
               cpu: 20m
             limits:
-              memory: 128Mi
+              memory: 256Mi
           volumeMounts:
             - name: config
               mountPath: /etc/alloy
