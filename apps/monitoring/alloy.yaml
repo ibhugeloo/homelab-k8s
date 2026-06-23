@@ -153,10 +153,10 @@ spec:
               name: http
           resources:
             requests:
-              memory: 128Mi
+              memory: 256Mi
               cpu: 20m
             limits:
-              memory: 256Mi
+              memory: 1Gi
           volumeMounts:
             - name: config
               mountPath: /etc/alloy
