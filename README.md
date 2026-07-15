@@ -25,8 +25,8 @@ committed here.
 
 ```mermaid
 flowchart LR
-    DEV(["💻 laptop<br/>edit manifests"]) -->|git push| GH[("GitHub<br/>this repo")]
-    GH -->|pull & diff| ARGO["ArgoCD<br/>auto-sync"]
+    DEV(["💻 laptop<br/>edit manifests"]) -->|"git push"| GH[("GitHub<br/>this repo")]
+    GH -->|"pull &amp; diff"| ARGO["ArgoCD<br/>auto-sync"]
 
     subgraph CLUSTER ["k3s HA cluster — 3 × control-plane + etcd"]
         ARGO --> APPS["apps/umami<br/>apps/monitoring"]
@@ -34,8 +34,8 @@ flowchart LR
         KSM["kube-state-metrics"] --> ALLOY["Grafana Alloy"]
     end
 
-    SEM["Semaphore + Ansible<br/>one-click provisioning"] -.->|builds / rebuilds| CLUSTER
-    ALLOY -->|remote_write| PROM[("central Prometheus<br/>off-cluster · lab-wide")]
+    SEM["Semaphore + Ansible<br/>one-click provisioning"] -.->|"builds / rebuilds"| CLUSTER
+    ALLOY -->|"remote_write"| PROM[("central Prometheus<br/>off-cluster · lab-wide")]
 
     classDef canon fill:#1f2937,stroke:#f59e0b,color:#fff;
     class GH canon;
