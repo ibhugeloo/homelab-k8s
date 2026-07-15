@@ -1,5 +1,18 @@
 # homelab-k8s
 
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/k3s.svg" width="34" title="k3s" alt="k3s" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/argo-cd.svg" width="34" title="ArgoCD" alt="ArgoCD" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/metallb.svg" width="34" title="MetalLB" alt="MetalLB" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/traefik.svg" width="34" title="Traefik" alt="Traefik" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/ansible.svg" width="34" title="Ansible" alt="Ansible" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/semaphore.svg" width="34" title="Semaphore" alt="Semaphore" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/prometheus.svg" width="34" title="Prometheus" alt="Prometheus" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/grafana.svg" width="34" title="Grafana Alloy" alt="Grafana" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/umami.svg" width="34" title="Umami" alt="Umami" />&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/postgresql.svg" width="34" title="PostgreSQL" alt="PostgreSQL" />
+</p>
+
 GitOps manifests for my homelab Kubernetes cluster — a **3-node HA k3s cluster**
 (embedded etcd) reconciled by **ArgoCD**. `git push` to this repo is the only
 deployment mechanism: ArgoCD watches it and syncs the cluster to whatever is
@@ -49,10 +62,10 @@ flowchart LR
 
 ## What runs on it
 
-| App | Manifests | Notes |
-|-----|-----------|-------|
-| **Umami** | [`apps/umami/`](apps/umami) | Privacy-friendly analytics for my public websites — Umami + its PostgreSQL, exposed through a MetalLB `LoadBalancer` |
-| **Monitoring** | [`apps/monitoring/`](apps/monitoring) | `kube-state-metrics` + **Grafana Alloy** shipping cluster metrics via `remote_write` to the lab's **central Prometheus** (off-cluster) |
+| | App | Manifests | Notes |
+|:--:|-----|-----------|-------|
+| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/umami.svg" width="22" alt="Umami" /> | **Umami** | [`apps/umami/`](apps/umami) | Privacy-friendly analytics for my public websites — Umami + its PostgreSQL, exposed through a MetalLB `LoadBalancer` |
+| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/grafana.svg" width="22" alt="Grafana Alloy" /> | **Monitoring** | [`apps/monitoring/`](apps/monitoring) | `kube-state-metrics` + **Grafana Alloy** shipping cluster metrics via `remote_write` to the lab's **central Prometheus** (off-cluster) |
 
 The monitoring choice is deliberate: the cluster is RAM-constrained, so it does
 **not** run its own Prometheus/Grafana. A lightweight Alloy agent federates
